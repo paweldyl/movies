@@ -24,7 +24,7 @@ function reducer(state, { type, payload }) {
     }
 }
 
-export const addMovies = (movies) => ({
+export const addMoviesAction = (movies) => ({
     type: 'ADD_MOVIES',
     payload: movies
 });
