@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { addMoviesAction } from "./redux";
 
 import Header from "./components/Header";
-import Main from "./components/Main";
+import MainMovie from "./components/MainMovie";
+import Movies from "./components/Movies";
+import SearchedMovies from "./components/SearchedMovies";
+import ChosenMovie from "./components/ChosenMovie";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,9 +31,12 @@ function App() {
     console.log(movies);
   }, [movies]);
   return (
-    <div className="App">
+    <div className="app">
       <Header />
-      <Main />
+      <MainMovie />
+      <Movies />
+      <SearchedMovies />
+      <ChosenMovie />
     </div>
   );
 }

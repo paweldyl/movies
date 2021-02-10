@@ -1,0 +1,111 @@
+@import './variables';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+body{
+    background-color: $app-background-color;
+	font-family: 'Open Sans', sans-serif;
+    color:white;
+}
+html,body{
+    margin:0;
+    padding: 0;
+}
+.app{
+    width:100%;
+    min-height: 100vh;
+}
+.header{
+    width:100%;
+    height:100px;
+    position: fixed;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 2;
+    .dark-zone{
+        position: absolute;
+        width:0%;
+        height: 100vh;
+        top:0;
+        right: 0;
+        background-color: black;
+        opacity: 0.6;
+        z-index: 1;
+        margin:0;
+        transition: .5s width;
+    }
+    .logo{
+        position: absolute;
+        left:20px;
+        top:50%;
+        transform: translate(0, -50%);
+        color: $logo-color;
+        padding: 10px;
+        margin: 0 0 0 20px;
+        font-size: 30px;
+        cursor: pointer;
+    }
+    .burger-menu{
+        margin:25px;
+        cursor: pointer;
+        z-index:3;
+        .line{
+            background-color: white;
+            width:40px;
+            height: 2px;
+            margin:7px;
+        }
+    }
+    .top-menu{
+        display: none;
+    }
+    .side-menu{
+        position: absolute;
+        right:0;
+        top:0;
+        overflow: hidden;
+        width:0%;
+        height: 100vh;
+        background-color: $app-lighter-background-color;
+        transition: .5s width;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        z-index:2;
+        div{
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            &:hover{
+                background: #333;
+            }
+        }
+        .language{
+            cursor: auto;
+        }
+    }
+    select{
+        margin-left: 7px;
+        padding: 5px;
+    }
+    &.active{
+        .dark-zone{
+            width: 100%;
+        }
+        .side-menu{
+            width: 100%;
+        }
+    }
+    @media screen and (min-width: $screen-normal-width) {
+        .top-menu{
+            display: block;
+            display: flex;
+            align-items: center;
+            div{
+                padding: 15px;
+            }
+        }
+        .burger-menu{
+            display: none;
+        }
+    }
+}
