@@ -28,7 +28,7 @@ const Header = () => {
                 <div><input type="text" placeholder="search" /></div>
                 <div className="categories">categories</div>
                 <div className="language">
-                    <label for="lang">language:</label>
+                    <label htmlFor="lang">language:</label>
                     <select value={language} onChange={(event) => setLanguage(event.target.value)}>
                         <option value="PL">Polski</option>
                         <option value="ENG">English</option>
@@ -39,7 +39,7 @@ const Header = () => {
                 <div className="search" onClick={() => setSideNavVissible(!sideNavVissible)}>search</div>
                 <div className="categories" onClick={() => setSideNavVissible(!sideNavVissible)}>categories</div>
                 <div className="language">
-                    <label for="lang">language:</label>
+                    <label htmlFor="lang">language:</label>
                     <select value={language} onChange={(event) => setLanguage(event.target.value)}>
                         <option value="PL">Polski</option>
                         <option value="ENG">English</option>

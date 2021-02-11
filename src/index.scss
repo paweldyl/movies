@@ -15,12 +15,13 @@ html,body{
 }
 .header{
     width:100%;
-    height:100px;
+    height:60px;
     position: fixed;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     z-index: 2;
+    background: linear-gradient(0deg, rgba(4,1,51,0) 3%, rgba(0,0,0,0.8491771708683473) 100%);
     .dark-zone{
         position: absolute;
         width:0%;
@@ -106,6 +107,53 @@ html,body{
         }
         .burger-menu{
             display: none;
+        }
+    }
+}
+.main-movie{
+    width:100%;
+    position: relative;
+    height: 85vh;
+    max-height: 56.2vw;
+    overflow: hidden;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    .info{
+        position: absolute;
+        left:3%;
+        bottom: 5%;
+        font-size:20px;
+        text-align: center;
+        .container{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            .circle{
+                border-radius: 50%;
+                padding: 20px;
+                margin-right: 50px;
+                img{
+                    width:38px;
+                    height: 33px;
+                    margin-left:5px;
+                }
+                .how-many-ratings{
+                    margin:0;
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+    @media screen and (min-width: $screen-normal-width){
+        .info{
+            font-size: 40px;
+            .container{
+                .circle{
+                    .how-many-ratings{
+                        font-size:20px;
+                    }
+                }
+            }
         }
     }
 }

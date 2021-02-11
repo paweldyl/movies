@@ -3,7 +3,9 @@ import { createStore } from "redux";
 const initialState = {
     movies: [],
     chosen_movie: "",
-    lang: "PL"
+    lang: "PL",
+    main_movie: "",
+    genres: ""
 }
 
 export const store = createStore(
@@ -31,6 +33,16 @@ function reducer(state, { type, payload }) {
                 ...state,
                 lang: payload
             };
+        case 'SET_MAIN_MOVIE':
+            return {
+                ...state,
+                main_movie: payload
+            }
+        case 'SET_GENRES':
+            return {
+                ...state,
+                genres: payload
+            }
         default:
             return state
     }
@@ -49,4 +61,14 @@ export const setChosenMovieAction = (chosen) => ({
 export const setLangAction = (lang) => ({
     type: 'SET_LANG',
     payload: lang
+});
+
+export const setMainMovieAction = (movie) => ({
+    type: 'SET_MAIN_MOVIE',
+    payload: movie
+});
+
+export const setGenresAction = (genres) => ({
+    type: 'SET_GENRES',
+    payload: genres
 });

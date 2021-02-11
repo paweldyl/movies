@@ -17,7 +17,7 @@ html, body {
 
 .header {
   width: 100%;
-  height: 100px;
+  height: 60px;
   position: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -29,6 +29,8 @@ html, body {
       -ms-flex-align: center;
           align-items: center;
   z-index: 2;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(3%, rgba(4, 1, 51, 0)), to(rgba(0, 0, 0, 0.849177)));
+  background: linear-gradient(0deg, rgba(4, 1, 51, 0) 3%, rgba(0, 0, 0, 0.849177) 100%);
 }
 
 .header .dark-zone {
@@ -140,6 +142,62 @@ html, body {
   }
   .header .burger-menu {
     display: none;
+  }
+}
+
+.main-movie {
+  width: 100%;
+  position: relative;
+  height: 85vh;
+  max-height: 56.2vw;
+  overflow: hidden;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+.main-movie .info {
+  position: absolute;
+  left: 3%;
+  bottom: 5%;
+  font-size: 20px;
+  text-align: center;
+}
+
+.main-movie .info .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-movie .info .container .circle {
+  border-radius: 50%;
+  padding: 20px;
+  margin-right: 50px;
+}
+
+.main-movie .info .container .circle img {
+  width: 38px;
+  height: 33px;
+  margin-left: 5px;
+}
+
+.main-movie .info .container .circle .how-many-ratings {
+  margin: 0;
+  font-size: 15px;
+}
+
+@media screen and (min-width: 900px) {
+  .main-movie .info {
+    font-size: 40px;
+  }
+  .main-movie .info .container .circle .how-many-ratings {
+    font-size: 20px;
   }
 }
 /*# sourceMappingURL=index.css.map */
