@@ -157,3 +157,21 @@ html,body{
         }
     }
 }
+.movies{
+    width:100%;
+    .slider{
+        width:100%;
+        height: 200px;
+        margin-bottom: 100px;
+        white-space: nowrap;
+        overflow-x:scroll;
+        .movie{
+            width:200px;
+            display: inline-block;
+            white-space: nowrap;
+            img{
+                width:100%;
+            }
+        }
+    }
+}

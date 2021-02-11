@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addMoviesAction, setMainMovieAction } from "./redux";
+import { addMoviesAction, setMainMovieAction, setGenresAction } from "./redux";
 
 import Header from "./components/Header";
 import MainMovie from "./components/MainMovie";
@@ -12,8 +12,9 @@ function App() {
   const dispatch = useDispatch();
   const addMovies = (movies) => dispatch(addMoviesAction(movies));
   const setMainMovie = (movie) => dispatch(setMainMovieAction(movie));
+  const setGenres = (genres) => dispatch(setGenresAction(genres));
   const movies = useSelector(state => state.movies);
-  const how_many_pages = 20;
+  const how_many_pages = 5;
   useEffect(() => {
     for (let i = 1; i <= how_many_pages; i++) {
       fetch(`https://api.themoviedb.org/3/movie/popular?api_key=2cdaf6cbedf866a6ab6174b0475811f4&language=en-US&page=${i}`)
@@ -28,12 +29,11 @@ function App() {
     fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=2cdaf6cbedf866a6ab6174b0475811f4&language=en-US')
       .then(response => response.json())
       .then(data => {
-        let genres = {};
-        for (let i = 0; i < data.genres.length; i++) {
-          genres[data.genres[i].id] = data.genres[i].name;
-        }
-        console.log(genres);
+        console.log(data);
+        console.log(Array.isArray(data.genres));
+        setGenres(data.genres);
       })
+
   }, []);
   useEffect(() => {
     //console.log(movies);

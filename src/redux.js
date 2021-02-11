@@ -2,10 +2,10 @@ import { createStore } from "redux";
 
 const initialState = {
     movies: [],
-    chosen_movie: "",
+    chosen_movie: {},
     lang: "PL",
     main_movie: "",
-    genres: ""
+    genres: []
 }
 
 export const store = createStore(

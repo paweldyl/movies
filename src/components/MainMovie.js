@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 const MainMovie = () => {
     const movie = useSelector((state) => state.main_movie);
-    console.log(movie);
     return (
         <main
             className="main-movie"
