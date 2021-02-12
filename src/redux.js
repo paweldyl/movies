@@ -5,7 +5,8 @@ const initialState = {
     chosen_movie: {},
     lang: "PL",
     main_movie: "",
-    genres: []
+    genres: [],
+    curr_page: "MAIN"
 }
 
 export const store = createStore(
@@ -43,6 +44,11 @@ function reducer(state, { type, payload }) {
                 ...state,
                 genres: payload
             }
+        case 'SET_CURR_PAGE':
+            return {
+                ...state,
+                curr_page: payload
+            }
         default:
             return state
     }
@@ -71,4 +77,9 @@ export const setMainMovieAction = (movie) => ({
 export const setGenresAction = (genres) => ({
     type: 'SET_GENRES',
     payload: genres
+});
+
+export const setCurrPageAction = (new_page) => ({
+    type: 'SET_CURR_PAGE',
+    payload: new_page
 });

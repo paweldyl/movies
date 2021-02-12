@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addMoviesAction, setMainMovieAction, setGenresAction } from "./redux";
+import { addMoviesAction, setMainMovieAction, setGenresAction, setChosenMovieAction, setCurrPageAction } from "./redux";
 
 import Header from "./components/Header";
 import MainMovie from "./components/MainMovie";
@@ -13,8 +13,11 @@ function App() {
   const addMovies = (movies) => dispatch(addMoviesAction(movies));
   const setMainMovie = (movie) => dispatch(setMainMovieAction(movie));
   const setGenres = (genres) => dispatch(setGenresAction(genres));
+  const setChosenMovie = (movie) => dispatch(setChosenMovieAction(movie));
+  const setCurrPage = (page) => dispatch(setCurrPageAction(page));
   const movies = useSelector(state => state.movies);
   const how_many_pages = 5;
+  const curr_page = useSelector(state => state.curr_page);
   useEffect(() => {
     for (let i = 1; i <= how_many_pages; i++) {
       fetch(`https://api.themoviedb.org/3/movie/popular?api_key=2cdaf6cbedf866a6ab6174b0475811f4&language=en-US&page=${i}`)
@@ -35,16 +38,27 @@ function App() {
       })
 
   }, []);
-  useEffect(() => {
-    //console.log(movies);
-  }, [movies]);
+
+  const movie_info = (clicked_movie) => {
+    setChosenMovie(clicked_movie);
+    setCurrPage("CHOSEN_MOVIE");
+  }
+
   return (
     <div className="app">
       <Header />
-      <MainMovie />
-      <Movies />
+      {
+        curr_page === "MAIN" && <MainMovie />
+      }
+      {
+        curr_page === "MAIN" && <Movies movie_info={movie_info} />
+      }
       <SearchedMovies />
-      <ChosenMovie />
+
+      {
+        curr_page === "CHOSEN_MOVIE" && <ChosenMovie />
+      }
+
     </div>
   );
 }

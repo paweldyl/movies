@@ -1,32 +1,20 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { v4 as uuidv4 } from 'uuid';
 
-const Movies = () => {
+const Movies = ({ movie_info }) => {
     const genres = useSelector((state) => state.genres);
     const movies = useSelector((state) => state.movies);
+    console.log(movies);
     return (
         <main className="movies">
-            {genres.map((genre, i) => {
+            {movies.map((movie) => {
                 return (
-                    <div className="slider">
-                        {genre.name}
-                        {
-                            movies.map((movie) => {
-                                let correct_genre = false;
-                                for (let i = 0; i < movie.genre_ids.length; i++) {
-                                    if (movie.genre_ids[i] === genre.id)
-                                        correct_genre = true;
-                                }
-                                if (correct_genre) {
-                                    return (
-                                        <div className="movie">
-                                            <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}></img>
-                                            <div className="title">{movie.title}</div>
-                                        </div>
-                                    )
-                                }
-                            })
-                        }
+                    <div key={uuidv4()} className="movie" onClick={() => movie_info(movie)}>
+                        <div className="img">
+                            <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} />
+                        </div>
+                        <div className="movie-title">{movie.title}</div>
                     </div>
                 )
             })}

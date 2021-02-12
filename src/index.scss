@@ -16,7 +16,9 @@ html,body{
 .header{
     width:100%;
     height:60px;
-    position: fixed;
+    position: sticky;
+    top:0;
+    left:0;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -36,17 +38,16 @@ html,body{
     }
     .logo{
         position: absolute;
-        left:20px;
-        top:50%;
-        transform: translate(0, -50%);
+        left:5px;
+        top:0%;
         color: $logo-color;
-        padding: 10px;
-        margin: 0 0 0 20px;
+        padding: 0px;
+        margin: 0;
         font-size: 30px;
         cursor: pointer;
     }
     .burger-menu{
-        margin:25px;
+        margin:0px;
         cursor: pointer;
         z-index:3;
         .line{
@@ -108,6 +109,11 @@ html,body{
         .burger-menu{
             display: none;
         }
+        .logo{
+            left:20px;
+            margin-left:10px;
+            margin-top:10px;
+        }
     }
 }
 .main-movie{
@@ -121,25 +127,49 @@ html,body{
     .info{
         position: absolute;
         left:3%;
-        bottom: 5%;
+        bottom: 0%;
         font-size:20px;
         text-align: center;
+        h3{
+            margin-bottom: 0;
+        }
         .container{
             display: flex;
             justify-content: flex-start;
             align-items: center;
+            margin-bottom: 15px;
             .circle{
                 border-radius: 50%;
-                padding: 20px;
                 margin-right: 50px;
                 img{
-                    width:38px;
-                    height: 33px;
+                    width:23px;
+                    height: 18px;
                     margin-left:5px;
                 }
                 .how-many-ratings{
                     margin:0;
-                    font-size: 15px;
+                    font-size: 10px;
+                }
+            }
+            h5{
+                margin:0;
+            }
+        }
+    }
+    @media screen and (min-width: $screen-small-width){
+        .info{
+            font-size: 35px;
+            bottom:0%;
+            .container{
+                .circle{
+                    padding: 20px;
+                    img{
+                        width:33px;
+                        height: 28px;
+                    }
+                    .how-many-ratings{
+                        font-size:16px;
+                    }
                 }
             }
         }
@@ -147,8 +177,14 @@ html,body{
     @media screen and (min-width: $screen-normal-width){
         .info{
             font-size: 40px;
+            bottom:15%;
             .container{
                 .circle{
+                    padding: 20px;
+                    img{
+                        width:38px;
+                        height: 33px;
+                    }
                     .how-many-ratings{
                         font-size:20px;
                     }
@@ -159,19 +195,36 @@ html,body{
 }
 .movies{
     width:100%;
-    .slider{
-        width:100%;
-        height: 200px;
-        margin-bottom: 100px;
-        white-space: nowrap;
-        overflow-x:scroll;
-        .movie{
-            width:200px;
-            display: inline-block;
-            white-space: nowrap;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .movie{
+        width:calc(50% - 10px);
+        margin:5px;
+        box-sizing: border-box;
+        text-align: center;
+        cursor: pointer;
+        .img{
+            overflow: hidden;
             img{
                 width:100%;
+                transition: transform .4s;
             }
+            &:hover{
+                img{
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+    @media screen and (min-width: $screen-small-width) {
+        .movie{
+            width:calc(33.3% - 10px);
+        }
+    }
+    @media screen and (min-width: $screen-normal-width) {
+        .movie{
+            width:calc(25% - 10px);
         }
     }
 }

@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setLangAction } from "../redux"
+import { setLangAction, setCurrPageAction } from "../redux"
 
 const Header = () => {
     const [language, setLanguage] = useState("PL");
     const [sideNavVissible, setSideNavVissible] = useState(false);
     const dispatch = useDispatch();
-    const setLang = (lang) => dispatch(setLangAction(lang));
+    const setLang = lang => dispatch(setLangAction(lang));
+    const setCurrPage = page => dispatch(setCurrPageAction(page));
     const lang = useSelector(state => state.lang);
+
     useEffect(() => {
         setLang(language);
         console.log(language);
     }, [language]);
+
     useEffect(() => {
         console.log(sideNavVissible);
     }, [sideNavVissible]);
+
     return (
         <header className={sideNavVissible ? "header active" : "header"}>
             <div className="dark-zone" onClick={() => setSideNavVissible(!sideNavVissible)}></div>
-            <div className="logo">Movies</div>
+            <div className="logo" onClick={() => setCurrPage("MAIN")}>Movies</div>
             <div className="burger-menu" onClick={() => setSideNavVissible(!sideNavVissible)}>
                 <div className="line one"></div>
                 <div className="line two"></div>
