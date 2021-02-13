@@ -12,12 +12,7 @@ const Header = () => {
 
     useEffect(() => {
         setLang(language);
-        console.log(language);
     }, [language]);
-
-    useEffect(() => {
-        console.log(sideNavVissible);
-    }, [sideNavVissible]);
 
     return (
         <header className={sideNavVissible ? "header active" : "header"}>

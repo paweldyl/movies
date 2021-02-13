@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-const MainMovie = () => {
+const MainMovie = ({ movie_info }) => {
     const movie = useSelector((state) => state.main_movie);
     return (
         <main
@@ -15,7 +15,7 @@ const MainMovie = () => {
                         <img src="star.png" />
                         <p className="how-many-ratings">{movie.vote_count} ratings </p>
                     </div>
-                    <h5>Sprawdź!</h5>
+                    <h5 onClick={() => movie_info(movie)}>Sprawdź!</h5>
                 </div>
             </div>
         </main>

@@ -24,6 +24,13 @@ function reducer(state, { type, payload }) {
                     ...payload
                 ]
             };
+        case 'SET_MOVIES':
+            return {
+                ...state,
+                movies: [
+                    ...payload
+                ]
+            }
         case 'SET_CHOSEN':
             return {
                 ...state,
@@ -82,4 +89,9 @@ export const setGenresAction = (genres) => ({
 export const setCurrPageAction = (new_page) => ({
     type: 'SET_CURR_PAGE',
     payload: new_page
+});
+
+export const setMoviesAction = (movies) => ({
+    type: 'SET_MOVIES',
+    payload: movies
 });
