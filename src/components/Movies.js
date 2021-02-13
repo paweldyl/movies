@@ -3,11 +3,14 @@ import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
 
 const Movies = ({ movie_info }) => {
-    const genres = useSelector((state) => state.genres);
-    const movies = useSelector((state) => state.movies);
+    const lang = useSelector(state => state.lang);
+    const dict = useSelector(state => state.dictionary);
+    const genres = useSelector(state => state.genres);
+    const movies = useSelector(state => state.movies);
+
     return (
         <main className="movies">
-            {movies.length === 0 && "Nie znaleziono"}
+            {movies.length === 0 && dict[lang].not_found}
             {movies.map((movie) => {
                 if (movie.backdrop_path !== null) {
                     return (

@@ -3,10 +3,24 @@ import { createStore } from "redux";
 const initialState = {
     movies: [],
     chosen_movie: {},
-    lang: "PL",
+    lang: "en",
     main_movie: "",
     genres: [],
-    curr_page: "MAIN"
+    curr_page: "MAIN",
+    dictionary: {
+        pl: {
+            ratings: "ocen",
+            search: "szukaj",
+            not_found: "nie znaleziono",
+            check: "Sprawdź!"
+        },
+        en: {
+            ratings: "ratings",
+            search: "search",
+            not_found: "not found",
+            check: "check!"
+        }
+    }
 }
 
 export const store = createStore(

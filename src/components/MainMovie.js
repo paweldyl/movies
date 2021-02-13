@@ -2,6 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 const MainMovie = ({ movie_info }) => {
     const movie = useSelector((state) => state.main_movie);
+    const lang = useSelector(state => state.lang);
+    const dict = useSelector(state => state.dictionary);
     return (
         <main
             className="main-movie"
@@ -13,9 +15,9 @@ const MainMovie = ({ movie_info }) => {
                     <div className="circle">
                         {movie.vote_average}
                         <img src="star.png" />
-                        <p className="how-many-ratings">{movie.vote_count} ratings </p>
+                        <p className="how-many-ratings">{movie.vote_count} {dict[lang].ratings} </p>
                     </div>
-                    <h5 onClick={() => movie_info(movie)}>Sprawdź!</h5>
+                    <h5 onClick={() => movie_info(movie)}>{dict[lang].check}</h5>
                 </div>
             </div>
         </main>

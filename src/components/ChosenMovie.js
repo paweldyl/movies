@@ -4,8 +4,10 @@ import { useSelector } from "react-redux";
 
 const ChosenMovie = () => {
     const chosen_movie = useSelector(state => state.chosen_movie);
+    const lang = useSelector(state => state.lang);
+    const dict = useSelector(state => state.dictionary);
     return (
-        <main className="chosen-movie">
+        <section className="chosen-movie">
             <div className="img">
                 <img src={`https://image.tmdb.org/t/p/original${chosen_movie.backdrop_path}`} alt={chosen_movie.title} />
             </div>
@@ -16,11 +18,11 @@ const ChosenMovie = () => {
                 <div className="rating">
                     {chosen_movie.vote_average}
                     <img src="star.png" className="star" />
-                    <p className="how-many-ratings">{chosen_movie.vote_count} ratings </p>
+                    <p className="how-many-ratings">{chosen_movie.vote_count} {dict[lang].ratings} </p>
                 </div>
                 <div className="overview">{chosen_movie.overview}</div>
             </div>
-        </main>
+        </section>
     )
 }
 export default ChosenMovie;

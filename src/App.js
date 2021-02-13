@@ -5,7 +5,6 @@ import { addMoviesAction, setMoviesAction, setMainMovieAction, setGenresAction, 
 import Header from "./components/Header";
 import MainMovie from "./components/MainMovie";
 import Movies from "./components/Movies";
-import SearchedMovies from "./components/SearchedMovies";
 import ChosenMovie from "./components/ChosenMovie";
 
 function App() {
@@ -16,13 +15,13 @@ function App() {
   const setGenres = genres => dispatch(setGenresAction(genres));
   const setChosenMovie = movie => dispatch(setChosenMovieAction(movie));
   const setCurrPage = page => dispatch(setCurrPageAction(page));
-  const movies = useSelector(state => state.movies);
   const curr_page = useSelector(state => state.curr_page);
+  const lang = useSelector(state => state.lang);
   const [currApiPage, setCurrApiPage] = useState(2);
   const [downloadNewPages, setDownloadNewPages] = useState(false);
 
   useEffect(() => {
-    fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=2cdaf6cbedf866a6ab6174b0475811f4&language=en-US')
+    fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=2cdaf6cbedf866a6ab6174b0475811f4&language=${lang}`)
       .then(response => response.json())
       .then(data => {
         setGenres(data.genres);
@@ -39,7 +38,7 @@ function App() {
     }
 
     if (curr_page === "MAIN") {
-      fetch(`https://api.themoviedb.org/3/movie/popular?api_key=2cdaf6cbedf866a6ab6174b0475811f4&language=en-US&page=${1}`)
+      fetch(`https://api.themoviedb.org/3/movie/popular?api_key=2cdaf6cbedf866a6ab6174b0475811f4&language=${lang}&page=${1}`)
         .then(response => response.json())
         .then(data => {
           setMovies(data.results);
@@ -53,7 +52,7 @@ function App() {
 
   useEffect(() => {
     if (downloadNewPages === true && curr_page === "MAIN") {
-      fetch(`https://api.themoviedb.org/3/movie/popular?api_key=2cdaf6cbedf866a6ab6174b0475811f4&language=en-US&page=${currApiPage}`)
+      fetch(`https://api.themoviedb.org/3/movie/popular?api_key=2cdaf6cbedf866a6ab6174b0475811f4&language=${lang}&page=${currApiPage}`)
         .then(response => response.json())
         .then(data => {
           addMovies(data.results);
@@ -61,7 +60,6 @@ function App() {
           setTimeout(() => {
             setDownloadNewPages(false);
           }, 100);
-          console.log(currApiPage);
         })
     }
   }, [downloadNewPages]);
@@ -83,10 +81,11 @@ function App() {
       {
         curr_page === "SEARCHED" && <Movies movie_info={movie_info} />
       }
-
-
       {
         curr_page === "CHOSEN_MOVIE" && <ChosenMovie />
+      }
+      {
+        curr_page === "CATEGORIES" && <ChosenMovie />
       }
 
     </div>

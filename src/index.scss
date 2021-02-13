@@ -24,95 +24,40 @@ html,body{
     align-items: center;
     z-index: 2;
     background: linear-gradient(0deg, rgba(4,1,51,0) 3%, rgba(0,0,0,0.8491771708683473) 100%);
-    .dark-zone{
-        position: absolute;
-        width:0%;
-        height: 100vh;
-        top:0;
-        right: 0;
-        background-color: black;
-        opacity: 0.6;
-        z-index: 1;
-        margin:0;
-        transition: .5s width;
-    }
     .logo{
         position: absolute;
         left:5px;
-        top:0%;
+        top:50%;
+        transform: translate(0, -50%);
         color: $logo-color;
         padding: 0px;
         margin: 0;
-        font-size: 30px;
+        font-size: 25px;
         cursor: pointer;
-    }
-    .burger-menu{
-        margin:0px;
-        cursor: pointer;
-        z-index:3;
-        .line{
-            background-color: white;
-            width:40px;
-            height: 2px;
-            margin:7px;
-        }
     }
     .top-menu{
-        display: none;
-    }
-    .side-menu{
-        position: absolute;
-        right:0;
-        top:0;
-        overflow: hidden;
-        width:0%;
-        height: 100vh;
-        background-color: $app-lighter-background-color;
-        transition: .5s width;
+        display: block;
         display: flex;
-        justify-content: center;
-        flex-direction: column;
-        z-index:2;
+        align-items: center;
         div{
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            &:hover{
-                background: #333;
-            }
+            padding: 15px;
+            text-align: right;
+        }
+        input{
+            max-width: 55%;
         }
         .language{
-            cursor: auto;
+            padding-left: 0;
         }
     }
     select{
         margin-left: 7px;
         padding: 5px;
     }
-    &.active{
-        .dark-zone{
-            width: 100%;
-        }
-        .side-menu{
-            width: 100%;
-        }
-    }
     @media screen and (min-width: $screen-normal-width) {
-        .top-menu{
-            display: block;
-            display: flex;
-            align-items: center;
-            div{
-                padding: 15px;
-            }
-        }
-        .burger-menu{
-            display: none;
-        }
         .logo{
             left:20px;
             margin-left:10px;
-            margin-top:10px;
         }
     }
 }

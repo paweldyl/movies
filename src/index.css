@@ -36,83 +36,40 @@ html, body {
   background: linear-gradient(0deg, rgba(4, 1, 51, 0) 3%, rgba(0, 0, 0, 0.849177) 100%);
 }
 
-.header .dark-zone {
-  position: absolute;
-  width: 0%;
-  height: 100vh;
-  top: 0;
-  right: 0;
-  background-color: black;
-  opacity: 0.6;
-  z-index: 1;
-  margin: 0;
-  -webkit-transition: .5s width;
-  transition: .5s width;
-}
-
 .header .logo {
   position: absolute;
   left: 5px;
-  top: 0%;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
   color: #E50914;
   padding: 0px;
   margin: 0;
-  font-size: 30px;
+  font-size: 25px;
   cursor: pointer;
-}
-
-.header .burger-menu {
-  margin: 0px;
-  cursor: pointer;
-  z-index: 3;
-}
-
-.header .burger-menu .line {
-  background-color: white;
-  width: 40px;
-  height: 2px;
-  margin: 7px;
 }
 
 .header .top-menu {
-  display: none;
-}
-
-.header .side-menu {
-  position: absolute;
-  right: 0;
-  top: 0;
-  overflow: hidden;
-  width: 0%;
-  height: 100vh;
-  background-color: #252525;
-  -webkit-transition: .5s width;
-  transition: .5s width;
+  display: block;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  z-index: 2;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.header .side-menu div {
-  padding: 20px;
-  text-align: center;
-  cursor: pointer;
+.header .top-menu div {
+  padding: 15px;
+  text-align: right;
 }
 
-.header .side-menu div:hover {
-  background: #333;
+.header .top-menu input {
+  max-width: 55%;
 }
 
-.header .side-menu .language {
-  cursor: auto;
+.header .top-menu .language {
+  padding-left: 0;
 }
 
 .header select {
@@ -120,34 +77,10 @@ html, body {
   padding: 5px;
 }
 
-.header.active .dark-zone {
-  width: 100%;
-}
-
-.header.active .side-menu {
-  width: 100%;
-}
-
 @media screen and (min-width: 900px) {
-  .header .top-menu {
-    display: block;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  .header .top-menu div {
-    padding: 15px;
-  }
-  .header .burger-menu {
-    display: none;
-  }
   .header .logo {
     left: 20px;
     margin-left: 10px;
-    margin-top: 10px;
   }
 }
 
