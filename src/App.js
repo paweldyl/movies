@@ -10,12 +10,12 @@ import ChosenMovie from "./components/ChosenMovie";
 
 function App() {
   const dispatch = useDispatch();
-  const addMovies = (movies) => dispatch(addMoviesAction(movies));
-  const setMovies = (movies) => dispatch(setMoviesAction(movies));
-  const setMainMovie = (movie) => dispatch(setMainMovieAction(movie));
-  const setGenres = (genres) => dispatch(setGenresAction(genres));
-  const setChosenMovie = (movie) => dispatch(setChosenMovieAction(movie));
-  const setCurrPage = (page) => dispatch(setCurrPageAction(page));
+  const addMovies = movies => dispatch(addMoviesAction(movies));
+  const setMovies = movies => dispatch(setMoviesAction(movies));
+  const setMainMovie = movie => dispatch(setMainMovieAction(movie));
+  const setGenres = genres => dispatch(setGenresAction(genres));
+  const setChosenMovie = movie => dispatch(setChosenMovieAction(movie));
+  const setCurrPage = page => dispatch(setCurrPageAction(page));
   const movies = useSelector(state => state.movies);
   const curr_page = useSelector(state => state.curr_page);
   const [currApiPage, setCurrApiPage] = useState(2);
@@ -80,7 +80,10 @@ function App() {
       {
         curr_page === "MAIN" && <Movies movie_info={movie_info} />
       }
-      <SearchedMovies />
+      {
+        curr_page === "SEARCHED" && <Movies movie_info={movie_info} />
+      }
+
 
       {
         curr_page === "CHOSEN_MOVIE" && <ChosenMovie />

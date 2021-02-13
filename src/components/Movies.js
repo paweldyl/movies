@@ -7,6 +7,7 @@ const Movies = ({ movie_info }) => {
     const movies = useSelector((state) => state.movies);
     return (
         <main className="movies">
+            {movies.length === 0 && "Nie znaleziono"}
             {movies.map((movie) => {
                 if (movie.backdrop_path !== null) {
                     return (
@@ -14,7 +15,7 @@ const Movies = ({ movie_info }) => {
                             <div className="img" onClick={() => movie_info(movie)}>
                                 <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} />
                             </div>
-                            <div className="movie-title">{movie.title}</div>
+                            <div className="movie-title">{movie.title ? movie.title : movie.name}</div>
                         </div>
                     )
                 }

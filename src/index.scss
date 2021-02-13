@@ -229,3 +229,49 @@ html,body{
         }
     }
 }
+.chosen-movie{
+    width:100%;
+    .img{
+        img{
+            width:100%;
+        }
+    }
+    .details{
+        text-align: center;
+        padding:20px;
+        .rating{
+            font-size: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .star{
+                width:25px;
+                margin-left:5px;
+            }
+            .how-many-ratings{
+                font-size: 13px;
+                margin-left: 10px;
+            }
+        }
+    }
+    @media screen and (min-width: $screen-normal-width) {
+        display: flex;
+        .img{
+            width: 50%;
+        }
+        .details{
+            display: flex;
+            width:50%;
+            flex-direction: column;
+            justify-content: center;
+            .title{
+                h1{
+                    margin-bottom: 0px;
+                }
+            }
+            .rating{
+                margin-bottom: 40px;
+            }
+        }
+    }
+}
