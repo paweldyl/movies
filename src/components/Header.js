@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setLangAction, setCurrPageAction, setMoviesAction, addMoviesAction } from "../redux"
+import { setLangAction, setCurrPageAction, setMoviesAction, addMoviesAction, setChosenMovieAction } from "../redux"
 
 const Header = () => {
     const [language, setLanguage] = useState("en");
@@ -10,19 +10,53 @@ const Header = () => {
     const setCurrPage = page => dispatch(setCurrPageAction(page));
     const setMovies = movies => dispatch(setMoviesAction(movies));
     const addMovies = movies => dispatch(addMoviesAction(movies));
+    const setChosenMovie = movie => dispatch(setChosenMovieAction(movie));
+    const chosen_movie = useSelector(state => state.chosen_movie);
     const lang = useSelector(state => state.lang);
     const dict = useSelector(state => state.dictionary);
     const curr_page = useSelector(state => state.curr_page);
+
     useEffect(() => {
         setLang(language);
+        if (curr_page === "CHOSEN_MOVIE") {
+        }
+        switch (curr_page) {
+            case "CHOSEN_MOVIE":
+                fetch(`https://api.themoviedb.org/3/movie/${chosen_movie.id}?api_key=2cdaf6cbedf866a6ab6174b0475811f4&language=${language}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        setChosenMovie(data);
+                        console.log(data);
+                    });
+                break;
+            case "MAIN":
+                fetch(`https://api.themoviedb.org/3/movie/popular?api_key=2cdaf6cbedf866a6ab6174b0475811f4&language=${language}&page=${1}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        setMovies(data.results);
+                    });
+                break;
+            case "SEARCHED":
+                fetch(`https://api.themoviedb.org/3/search/tv?api_key=2cdaf6cbedf866a6ab6174b0475811f4&language=${language}&page=1&include_adult=false&query=${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        setMovies(data.results);
+                    });
+                fetch(`https://api.themoviedb.org/3/search/movie?api_key=2cdaf6cbedf866a6ab6174b0475811f4&language=${language}&page=1&include_adult=false&query=${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        addMovies(data.results);
+                    });
+                break;
+        }
     }, [language]);
     const handle_search = (event) => {
-        setQuery(event.target.value);
+        const sentence = event.target.value.trim().replace(/\s/g, '+');
+        setQuery(sentence);
         if (event.target.value.trim() === "") {
             setCurrPage("MAIN");
         }
         else {
-            let sentence = event.target.value.trim().replace(/\s/g, '+');
             setCurrPage("SEARCHED");
             setMovies("0");
             fetch(`https://api.themoviedb.org/3/search/tv?api_key=2cdaf6cbedf866a6ab6174b0475811f4&language=${lang}&page=1&include_adult=false&query=${sentence}`)

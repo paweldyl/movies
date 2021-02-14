@@ -45,8 +45,10 @@ function App() {
           setMainMovie(data.results[0]);
           setCurrApiPage(2);
         })
+      setDownloadNewPages(false);
       window.addEventListener("scroll", scrollApiLoader);
     }
+
     return () => window.removeEventListener("scroll", scrollApiLoader);
   }, [curr_page]);
 

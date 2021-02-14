@@ -199,7 +199,7 @@ html,body{
             }
         }
     }
-    @media screen and (min-width: $screen-normal-width) {
+    @media screen and (min-width: $screen-large-width) {
         display: flex;
         .img{
             width: 50%;

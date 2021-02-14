@@ -7,7 +7,7 @@ const MainMovie = ({ movie_info }) => {
     return (
         <main
             className="main-movie"
-            style={{ backgroundImage: `linear-gradient(rgba(11,1,51,0) 26%, rgba(20,20,20,1) 94%), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` }}
+            style={movie ? { backgroundImage: `linear-gradient(rgba(11,1,51,0) 26%, rgba(20,20,20,1) 94%), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` } : {}}
         >
             <div className="info">
                 <h3 className="title">{movie.title}</h3>
