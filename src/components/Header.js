@@ -52,7 +52,7 @@ const Header = () => {
     }, [language]);
     const handle_search = (event) => {
         const sentence = event.target.value.trim().replace(/\s/g, '+');
-        setQuery(sentence);
+        setQuery(event.target.value);
         if (event.target.value.trim() === "") {
             setCurrPage("MAIN");
         }
